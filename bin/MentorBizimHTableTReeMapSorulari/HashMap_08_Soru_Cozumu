@@ -1,0 +1,38 @@
+// Verilen bir String deki harfleri ve harflerin kacar kez kullanildigini
+		// return eden bir method yaziniz
+		// Ornek : input: Bismillah   output: {a=1, B=1, s=1, h=1, i=2, l=2, m=1}
+//1.yol :Array sinifindan faydalanarak cozumleme yaptik
+		String input= "Bismillah";
+		Map<String,Integer> map = harfSayisi(input);
+		System.out.println("1.yol :" + map);  //1.yol :{a=1, B=1, s=1, h=1, i=2, l=2, m=1}
+//2.yol
+		Map<Character,Integer> mapChar = frekans(input);
+		System.out.println("2.yol :" + mapChar); //2.yol :{a=1, B=1, s=1, h=1, i=2, l=2, m=1}
+	}
+
+	private static Map<String, Integer> harfSayisi(String input) {
+		String harfler [] = input.split("");
+		System.out.println(Arrays.toString(harfler)); //[B, i, s, m, i, l, l, a, h]
+		Map<String,Integer> map1 =new HashMap<>();
+		for (String each: harfler) {
+			if (!map1.containsKey(each)) {
+				map1.put(each,1);
+			}else
+				map1.put(each,map1.get(each)+1) ;
+		}
+		return map1;
+
+	}
+//2.yol :Character Map olusturarak cozumleme
+
+	private static Map<Character, Integer> frekans(String input) {
+		Map<Character,Integer> mapChar = new HashMap<>();
+
+		for (int i = 0; i < input.length(); i++) {
+			char c = input.charAt(i);
+			if ( !mapChar.containsKey(c)  ) {
+				mapChar.put(c,1);
+			}else
+				mapChar.put(c,mapChar.get(c) +1);
+		}
+		return mapChar;
